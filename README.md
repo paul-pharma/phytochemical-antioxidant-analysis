@@ -1,53 +1,94 @@
-# Phytochemical and Antioxidant Activity Analysis
+# DPPH Antioxidant Analyzer
 
-## Project Overview
+A beginner-friendly Python command-line tool for calculating percentage DPPH radical inhibition from absorbance readings, displaying results in a table, and exporting a CSV file and graph.
 
-This project focuses on analysing the antioxidant activity of medicinal plant extracts using Python programming. It uses the DPPH free radical scavenging assay to evaluate the antioxidant potential of plant extracts.
+**Author:** Paul Rousseau S.  
+**Version:** 1.0  
+**Project status:** Educational portfolio project
 
-The project demonstrates how programming and data analysis can be applied to pharmaceutical and phytochemical research.
+## Features
 
-## Objectives
+- Calculates percentage inhibition from control and sample absorbance.
+- Accepts multiple concentrations.
+- Displays results using a Pandas table.
+- Exports results to CSV.
+- Saves a concentration-versus-inhibition graph as a 300 dpi PNG image.
+- Checks common invalid inputs.
 
-- Calculate percentage inhibition of DPPH free radicals.
-- Analyse antioxidant activity at different concentrations.
-- Estimate IC50 values.
-- Generate dose-response curves.
-- Visualise experimental data using graphs.
+## Formula
 
-## Technologies Used
+% Inhibition = ((A_control - A_sample) / A_control) × 100
 
-- Python
-- Google Colab
-- NumPy
-- Pandas
-- Matplotlib
-- SciPy
+Where:
+- `A_control` is the control absorbance.
+- `A_sample` is the sample reaction absorbance.
 
-## DPPH Assay Formula
+## Requirements
 
-Percentage Inhibition:
+- Python 3.10 or newer
+- pandas
+- matplotlib
 
-% Inhibition = [(Control Absorbance - Sample Absorbance) / Control Absorbance] × 100
+## Installation
 
-## Pharmaceutical Applications
+1. Download or clone this repository.
+2. Open a terminal in the project folder.
+3. (Recommended) Create and activate a virtual environment:
 
-This project demonstrates the application of Python programming in phytochemical investigations and pharmacological research.
+   **Windows**
+   ```bash
+   python -m venv .venv
+   .venv\\Scripts\\activate
+   ```
 
-It can help researchers analyse antioxidant activity and interpret experimental results obtained from medicinal plant extracts.
+   **macOS/Linux**
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
 
-## Project Development Progress
+4. Install the dependencies:
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-- [x] Basic DPPH percentage inhibition calculation
-- [ ] Multiple concentration analysis
-- [ ] Data analysis using Pandas
-- [ ] Dose-response curve generation
-- [ ] IC50 estimation
-- [ ] Graph visualisation
+## Run the program
 
-## Project Status
+```bash
+python dpph_analyzer.py
+```
 
-Beginner-level educational project – Work in Progress.
+Enter the control absorbance, sample/extract name, number of concentrations, and each concentration with its sample absorbance.
 
-## Author
+The program creates:
+- `<sample>_dpph_results.csv`
+- `<sample>_dpph_graph.png`
 
-Paul Rousseau S
+These files are saved in the folder from which the program is run.
+
+## Example test data (illustrative only)
+
+For a control absorbance of `0.800`:
+
+| Concentration | Sample absorbance | Inhibition |
+|---:|---:|---:|
+| 25 µg/mL | 0.600 | 25% |
+| 50 µg/mL | 0.400 | 50% |
+| 100 µg/mL | 0.200 | 75% |
+
+These values are software test examples, not experimental findings.
+
+## Scientific limitations
+
+Version 1.0 calculates direct percentage inhibition from the values entered by the user. It does **not** currently perform blank correction, replicate averaging, statistical testing, curve fitting, or IC50 estimation. For real laboratory work, use an appropriate validated DPPH protocol, suitable blanks and controls, and replicate measurements. Review data quality and calculations before using results in academic work.
+
+## Future improvements
+
+- Blank correction
+- Replicate handling and mean/standard deviation
+- Dose-response curve fitting and IC50 estimation
+- Importing experimental readings from CSV
+
+## License
+
+No license has been added yet. Add an appropriate open-source license if you want to define reuse and distribution permissions.
